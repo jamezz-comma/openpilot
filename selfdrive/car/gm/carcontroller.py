@@ -121,7 +121,7 @@ class CarController(object):
 
     ### GAS/BRAKE ###
 
-    if self.car_fingerprint == CAR.VOLT:
+    if self.car_fingerprint == CAR.VOLT and False:
       # no output if not enabled, but keep sending keepalive messages
       # threat pedals as one
       final_pedal = actuators.gas - actuators.brake

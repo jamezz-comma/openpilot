@@ -120,10 +120,10 @@ class CarState(object):
     if self.car_fingerprint == CAR.VOLT:
       self.park_brake = pt_cp.vl["EPBStatus"]['EPBClosed']
       self.main_on = pt_cp.vl["ECMEngineStatus"]['CruiseMainOn']
-      self.acc_active = False
       self.esp_disabled = pt_cp.vl["ESPStatus"]['TractionControlOn'] != 1
       self.regen_pressed = bool(pt_cp.vl["EBCMRegenPaddle"]['RegenPaddle'])
       self.pcm_acc_status = pt_cp.vl["AcceleratorPedal2"]['CruiseState']
+      self.acc_active = self.pcm_acc_status > 0
     else: 
       self.park_brake = False
       self.main_on = False

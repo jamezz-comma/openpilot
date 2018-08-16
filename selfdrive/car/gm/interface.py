@@ -79,7 +79,7 @@ class CarInterface(object):
 
     if candidate == CAR.VOLT:
       # supports stop and go, but initial engage must be above 18mph (which include conservatism)
-      ret.minEnableSpeed = 18 * CV.MPH_TO_MS
+      ret.minEnableSpeed = -1
       # kg of standard extra cargo to count for drive, gas, etc...
       ret.mass = 1607 + std_cargo
       ret.safetyModel = car.CarParams.SafetyModels.gm
@@ -255,7 +255,7 @@ class CarInterface(object):
     if ret.seatbeltUnlatched:
       events.append(create_event('seatbeltNotLatched', [ET.NO_ENTRY, ET.SOFT_DISABLE]))
 
-    if self.CS.car_fingerprint == CAR.VOLT:
+    if self.CS.car_fingerprint == CAR.VOLT and False:
 
       if self.CS.brake_error:
         events.append(create_event('brakeUnavailable', [ET.NO_ENTRY, ET.IMMEDIATE_DISABLE, ET.PERMANENT]))
@@ -289,7 +289,7 @@ class CarInterface(object):
         if b.type == "cancel" and b.pressed:
           events.append(create_event('buttonCancel', [ET.USER_DISABLE]))
 
-    if self.CS.car_fingerprint == CAR.CADILLAC_CT6:
+    if self.CS.car_fingerprint == CAR.CADILLAC_CT6 or True:
 
       if self.CS.acc_active and not self.acc_active_prev:
         events.append(create_event('pcmEnable', [ET.ENABLE]))
