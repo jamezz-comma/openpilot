@@ -107,7 +107,7 @@ class CarController(object):
         apply_steer = 0
 
       self.apply_steer_last = apply_steer
-      idx = (frame / steer_step) % 4
+      idx = (frame / P.STEER_STEP) % 4
 
       if self.car_fingerprint in (CAR.VOLT, CAR.ACADIA_DENALI):
         can_sends.append(gmcan.create_steering_control(self.packer_pt,
