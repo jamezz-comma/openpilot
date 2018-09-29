@@ -93,8 +93,12 @@ class CarController(object):
     canbus = self.canbus
 
     ### STEER ###
+    steer_step = P.STEER_STEP
+    if (self.car_fingerprint in (CAR.ACADIA_DENALI)):
+      if not enabled:
+        steer_step = 10 # Drop it down to 10hz if not enabled (testing)
 
-    if (frame % P.STEER_STEP) == 0:
+    if (frame % steer_step) == 0:
       lkas_enabled = enabled and not CS.steer_not_allowed and CS.v_ego > 3.
       if lkas_enabled:
         apply_steer = actuators.steer * P.STEER_MAX
@@ -103,7 +107,7 @@ class CarController(object):
         apply_steer = 0
 
       self.apply_steer_last = apply_steer
-      idx = (frame / P.STEER_STEP) % 4
+      idx = (frame / steer_step) % 4
 
       if self.car_fingerprint in (CAR.VOLT, CAR.ACADIA_DENALI):
         can_sends.append(gmcan.create_steering_control(self.packer_pt,
