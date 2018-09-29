@@ -107,14 +107,16 @@ class CarController(object):
         apply_steer = 0
 
       self.apply_steer_last = apply_steer
-      idx = (frame / steer_step) % 4
-
+      
       if self.car_fingerprint in (CAR.VOLT, CAR.ACADIA_DENALI):
         can_sends.append(gmcan.create_steering_control(self.packer_pt,
-          canbus.powertrain, apply_steer, idx, lkas_enabled))
+          canbus.powertrain, apply_steer, self.steer_idx, lkas_enabled))
       if self.car_fingerprint == CAR.CADILLAC_CT6:
         can_sends += gmcan.create_steering_control_ct6(self.packer_pt,
-          canbus, apply_steer, CS.v_ego, idx, lkas_enabled)
+          canbus, apply_steer, CS.v_ego, self.steer_idx, lkas_enabled)
+
+      # Need to save steer_idx so position is preserved when we transition steer step frequencies (Acadia)
+      self.steer_idx = (self.steer_idx + 1) % 4
 
     ### GAS/BRAKE ###
 
