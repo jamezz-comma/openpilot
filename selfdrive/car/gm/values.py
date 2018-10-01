@@ -21,12 +21,10 @@ class AccState:
 
 def is_eps_status_ok(eps_status, car_fingerprint):
   valid_eps_status = []
-  if car_fingerprint == CAR.VOLT:
+  if car_fingerprint in (CAR.VOLT, CAR.ACADIA_DENALI):
     valid_eps_status += [0, 1]
   elif car_fingerprint == CAR.CADILLAC_CT6:
     valid_eps_status += [0, 1, 4, 5, 6]
-  elif car_fingerprint == CAR.ACADIA_DENALI:
-    valid_eps_status += [0, 1, 3]
   return eps_status in valid_eps_status
 
 def parse_gear_shifter(can_gear):
