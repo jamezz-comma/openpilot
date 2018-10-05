@@ -52,7 +52,13 @@ class CarInterface(object):
 
   @staticmethod
   def compute_gb(accel, speed):
-    return float(accel) / 4.0
+  	# Ripped from compute_gb_honda in Honda's interface.py. Works well off shelf but may need more tuning
+    creep_brake = 0.0
+    creep_speed = 2.68
+    creep_brake_value = 0.15
+    if speed < creep_speed:
+      creep_brake = (creep_speed - speed) / creep_speed * creep_brake_value
+    return float(accel) / 4.8 - creep_brake
 
   @staticmethod
   def calc_accel_override(a_ego, a_target, v_ego, v_target):
@@ -148,16 +154,16 @@ class CarInterface(object):
       ret.brakeMaxV = [1.]
       ret.longPidDeadzoneBP = [0.]
       ret.longPidDeadzoneV = [0.]
-
-      ret.longitudinalKpBP = [5., 35.]
-      ret.longitudinalKpV = [2.4, 1.5]
-      ret.longitudinalKiBP = [0.]
-      ret.longitudinalKiV = [0.36]
-
+  
+      ret.longitudinalKpBP = [0., 5., 35.]
+      ret.longitudinalKpV = [1.8, 2.425, 2.2]
+      ret.longitudinalKiBP = [0., 35.]
+      ret.longitudinalKiV = [0.30, 0.36]
+  
       ret.steerLimitAlert = True
-
+  
       ret.stoppingControl = True
-      ret.startAccel = 0.8
+      ret.startAccel = 0.5
       
     elif candidate == CAR.ACADIA_DENALI:
       ret.steerKiBP, ret.steerKpBP = [[0.], [0.]]
@@ -174,9 +180,9 @@ class CarInterface(object):
       ret.longPidDeadzoneV = [0.]
 
       ret.longitudinalKpBP = [0., 5., 35.]
-      ret.longitudinalKpV = [2.4, 1.2, 0.5]
+      ret.longitudinalKpV = [1.8, 2.425, 2.2]
       ret.longitudinalKiBP = [0., 35.]
-      ret.longitudinalKiV = [0.18, 0.12]
+      ret.longitudinalKiV = [0.30, 0.36]
 
       ret.steerLimitAlert = True
 
