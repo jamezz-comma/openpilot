@@ -13,12 +13,6 @@ class CruiseButtons:
   MAIN        = 5
   CANCEL      = 6
 
-class AccState:
-  OFF        = 0
-  ACTIVE     = 1
-  FAULTED    = 3
-  STANDSTILL = 4
-
 def is_eps_status_ok(eps_status, car_fingerprint):
   valid_eps_status = []
   if car_fingerprint in (CAR.VOLT, CAR.ACADIA_DENALI):
@@ -61,14 +55,14 @@ FINGERPRINTS = {
 
 STEER_THRESHOLD = 1.0
 
-
 STOCK_CONTROL_MSGS = {
   CAR.VOLT: [384, 715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.ACADIA_DENALI: [384, 715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
   CAR.CADILLAC_CT6: [], # Cadillac does not require ASCMs to be disconnected
 }
 
 DBC = {
   CAR.VOLT: dbc_dict('gm_global_a_powertrain', 'gm_global_a_object', chassis_dbc='gm_global_a_chassis'),
-  CAR.ACADIA_DENALI: dbc_dict('gm_global_a_powertrain', 'gm_global_a_object', chassis_dbc='gm_global_a_chassis'),
+  CAR.ACADIA_DENALI: dbc_dict('gm_global_acadia_denali_2018_powertrain', 'gm_global_a_object', chassis_dbc='gm_global_a_chassis'),
   CAR.CADILLAC_CT6: dbc_dict('cadillac_ct6_powertrain', 'cadillac_ct6_object', chassis_dbc='cadillac_ct6_chassis'),
 }

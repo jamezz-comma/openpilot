@@ -161,7 +161,7 @@ class CarInterface(object):
       
     elif candidate == CAR.ACADIA_DENALI:
       ret.steerKiBP, ret.steerKpBP = [[0.], [0.]]
-      ret.steerKpV, ret.steerKiV = [[0.2], [0.00]]
+      ret.steerKpV, ret.steerKiV = [[0.5], [0.00]]
       ret.steerKf = 0.00004   # full torque for 20 deg at 80mph means 0.00007818594
 
       ret.steerMaxBP = [0.] # m/s
@@ -174,7 +174,7 @@ class CarInterface(object):
       ret.longPidDeadzoneV = [0.]
 
       ret.longitudinalKpBP = [0., 5., 35.]
-      ret.longitudinalKpV = [1.2, 0.8, 0.5]
+      ret.longitudinalKpV = [2.4, 1.2, 0.5]
       ret.longitudinalKiBP = [0., 35.]
       ret.longitudinalKiV = [0.18, 0.12]
 
@@ -229,7 +229,7 @@ class CarInterface(object):
     ret.cruiseState.available = bool(self.CS.main_on)
     cruiseEnabled = self.CS.pcm_acc_status != 0
     ret.cruiseState.enabled = cruiseEnabled
-    ret.cruiseState.standstill = False
+    ret.cruiseState.standstill = self.CS.pcm_acc_status == 4
 
     ret.leftBlinker = self.CS.left_blinker_on
     ret.rightBlinker = self.CS.right_blinker_on
@@ -312,6 +312,8 @@ class CarInterface(object):
         events.append(create_event('pedalPressed', [ET.NO_ENTRY, ET.USER_DISABLE]))
       if ret.gasPressed:
         events.append(create_event('pedalPressed', [ET.PRE_ENABLE]))
+      if ret.cruiseState.standstill:
+        events.append(create_event('resumeRequired', [ET.WARNING]))
 
       # handle button presses
       for b in ret.buttonEvents:
