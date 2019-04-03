@@ -58,35 +58,7 @@ class CarInterface(object):
 
   @staticmethod
   def calc_accel_override(a_ego, a_target, v_ego, v_target):
-
-    # normalized max accel. Allowing max accel at low speed causes speed overshoots
-    max_accel_bp = [10, 20]    # m/s
-    max_accel_v = [0.714, 1.0] # unit of max accel
-    max_accel = interp(v_ego, max_accel_bp, max_accel_v)
-
-    # limit the pcm accel cmd if:
-    # - v_ego exceeds v_target, or
-    # - a_ego exceeds a_target and v_ego is close to v_target
-
-    eA = a_ego - a_target
-    valuesA = [1.0, 0.1]
-    bpA = [0.3, 1.1]
-
-    eV = v_ego - v_target
-    valuesV = [1.0, 0.1]
-    bpV = [0.0, 0.5]
-
-    valuesRangeV = [1., 0.]
-    bpRangeV = [-1., 0.]
-
-    # only limit if v_ego is close to v_target
-    speedLimiter = interp(eV, bpV, valuesV)
-    accelLimiter = max(interp(eA, bpA, valuesA), interp(eV, bpRangeV, valuesRangeV))
-
-    # accelOverride is more or less the max throttle allowed to pcm: usually set to a constant
-    # unless aTargetMax is very high and then we scale with it; this help in quicker restart
-
-    return float(max(max_accel, a_target / A_ACC_MAX)) * min(speedLimiter, accelLimiter)
+    return 1.0
 
   @staticmethod
   def get_params(candidate, fingerprint):
