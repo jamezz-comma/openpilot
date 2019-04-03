@@ -196,7 +196,7 @@ class CarInterface(object):
     ret.steerLimitAlert = True
 
     ret.stoppingControl = True
-    ret.startAccel = 0.0
+    ret.startAccel = 0.8
 
     ret.steerActuatorDelay = 0.1  # Default delay, not measured yet
     ret.steerRateCost = 1.0
