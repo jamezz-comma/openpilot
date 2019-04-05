@@ -14,7 +14,7 @@ try:
 except ImportError:
   CarController = None
 
-A_ACC_MAX = min(_A_CRUISE_MAX_V_FOLLOWING)
+A_ACC_MAX = 0.15
 
 class CanBus(object):
   def __init__(self):
