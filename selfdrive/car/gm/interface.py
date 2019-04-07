@@ -14,7 +14,7 @@ try:
 except ImportError:
   CarController = None
 
-FOLLOW_AGGRESSION = 0.15 # (Acceleration/Decel aggression) Lower is more aggressive
+FOLLOW_AGGRESSION = 0.125 # (Acceleration/Decel aggression) Lower is more aggressive
 
 class CanBus(object):
   def __init__(self):
