@@ -196,8 +196,8 @@ class CarController(object):
       # TODO: Manage periodic re-issuing of chime command
       # and chime cancellation
       if chime_cnt == -1:
-        chime_cnt = 10
-        self.fcw_count = 200 # Continuous chime = critical alert so trigger FCWAlert
+        chime_cnt = 0
+        self.fcw_count = 100 # Continuous chime = critical alert so trigger FCWAlert
 
       if chime != 0:
         can_sends.append(gmcan.create_chime_command(canbus.sw_gmlan, chime, duration, chime_cnt))
