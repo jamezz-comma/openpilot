@@ -40,9 +40,9 @@ AUDIO_HUD = {
   AudibleAlert.chimeWarning2: (CM.LOW_CHIME, -1),
   AudibleAlert.chimeWarningRepeat: (CM.LOW_CHIME, -1)}
 
-def is_eps_status_ok(eps_status, car_fingerprint):
+def is_eps_status_ok(eps_status, car_fingerprint, openpilotLongitudinalControl):
   valid_eps_status = []
-  if car_fingerprint in SUPERCRUISE_CARS:
+  if openpilotLongitudinalControl:
     valid_eps_status += [0, 1, 4, 5, 6]
   else:
     valid_eps_status += [0, 1]

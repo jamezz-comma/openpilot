@@ -103,7 +103,7 @@ class CarState(object):
 
     # 0 - inactive, 1 - active, 2 - temporary limited, 3 - failed
     self.lkas_status = pt_cp.vl["PSCMStatus"]['LKATorqueDeliveredStatus']
-    self.steer_not_allowed = not is_eps_status_ok(self.lkas_status, self.car_fingerprint)
+    self.steer_not_allowed = not is_eps_status_ok(self.lkas_status, self.car_fingerprint, self.CP.openpilotLongitudinalControl)
 
     # 1 - open, 0 - closed
     self.door_all_closed = (pt_cp.vl["BCMDoorBeltStatus"]['FrontLeftDoor'] == 0 and
