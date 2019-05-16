@@ -64,7 +64,6 @@ class CarInterface(object):
     # or camera is on powertrain bus (LKA cars without ACC).
     ret.enableCamera = not any(x for x in STOCK_LATERAL_CONTROL_MSGS[candidate] if x in fingerprint)
     ret.openpilotLongitudinalControl = not any(x for x in STOCK_LONG_CONTROL_MSGS[candidate] if x in fingerprint)
-    self.openpilotLongitudinalControl = ret.openpilotLongitudinalControl # Save this off
 
     std_cargo = 136
 
