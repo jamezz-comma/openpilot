@@ -126,7 +126,7 @@ class CarState(object):
 
     if not self.CP.openpilotLongitudinalControl:
       self.park_brake = False
-      self.main_on = False
+      self.main_on = True
       self.acc_active = pt_cp.vl["ASCMActiveCruiseControlStatus"]['ACCCmdActive']
       self.esp_disabled = False
       self.regen_pressed = False
