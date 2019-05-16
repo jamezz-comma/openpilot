@@ -101,13 +101,23 @@ FINGERPRINTS = {
 
 STEER_THRESHOLD = 1.0
 
-STOCK_CONTROL_MSGS = {
-  CAR.HOLDEN_ASTRA: [384, 715],
-  CAR.VOLT: [384, 715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
-  CAR.MALIBU: [384, 715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
-  CAR.ACADIA: [384, 715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
-  CAR.CADILLAC_ATS: [384, 715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
-  CAR.BUICK_REGAL: [384, 715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+STOCK_LATERAL_CONTROL_MSGS = {
+  CAR.HOLDEN_ASTRA: [384],
+  CAR.VOLT: [384], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.MALIBU: [384], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.ACADIA: [384], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.CADILLAC_ATS: [384], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.BUICK_REGAL: [384], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.CADILLAC_CT6: [], # CT6 does not require ASCMs to be disconnected
+}
+
+STOCK_LONG_CONTROL_MSGS = {
+  CAR.HOLDEN_ASTRA: [715],
+  CAR.VOLT: [715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.MALIBU: [715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.ACADIA: [715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.CADILLAC_ATS: [715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
+  CAR.BUICK_REGAL: [715], # 384 = "ASCMLKASteeringCmd", 715 = "ASCMGasRegenCmd"
   CAR.CADILLAC_CT6: [], # CT6 does not require ASCMs to be disconnected
 }
 
