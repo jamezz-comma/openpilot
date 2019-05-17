@@ -298,7 +298,7 @@ class CarInterface(object):
     if ret.seatbeltUnlatched:
       events.append(create_event('seatbeltNotLatched', [ET.NO_ENTRY, ET.SOFT_DISABLE]))
 
-    if self.CS.car_fingerprint in SUPERCRUISE_CARS:
+    if not self.CP.openpilotLongitudinalControl:
       if self.CS.acc_active and not self.acc_active_prev:
         events.append(create_event('pcmEnable', [ET.ENABLE]))
       if not self.CS.acc_active:
