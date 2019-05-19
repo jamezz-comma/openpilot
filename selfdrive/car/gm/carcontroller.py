@@ -192,7 +192,7 @@ class CarController(object):
 
     # Send chimes
     if self.chime != chime:
-      duration = 0x3c
+      duration = 0x1e
 
       # There is no 'repeat forever' chime command
       # TODO: Manage periodic re-issuing of chime command
