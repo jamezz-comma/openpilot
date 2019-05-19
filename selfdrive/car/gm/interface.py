@@ -69,12 +69,12 @@ class CarInterface(object):
     # - a_ego exceeds a_target and v_ego is close to v_target
 
     eA = a_ego - a_target
-    valuesA = [1.0, 0.1]
-    bpA = [0.3, 1.1]
+    valuesA = [5.0, 1.0, 0.1]
+    bpA = [-1.0, 0.3, 1.1]
 
     eV = v_ego - v_target
-    valuesV = [1.0, 0.1]
-    bpV = [0.0, 0.5]
+    valuesV = [5.0, 1.0, 0.1]
+    bpV = [-2.0, 0.0, 0.5]
 
     valuesRangeV = [1., 0.]
     bpRangeV = [-1., 0.]
